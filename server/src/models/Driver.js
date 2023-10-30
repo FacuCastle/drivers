@@ -6,8 +6,8 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Driver', {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: sequelize.UUIDV4,
       primaryKey: true
     },
     nombre: {
