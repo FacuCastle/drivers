@@ -8,6 +8,6 @@ router.use(express.json());
 
 router.use("/drivers", routesDrivers)
 
-router.use('/team', routesTeam)
+// router.use('/team', routesTeam)
 
 module.exports = router;
