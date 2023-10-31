@@ -16,7 +16,7 @@ const getDriversByName = async (name) => {
 const getDriversFromAPI = async (name) => {
   try {
 
-    const apiUrl = 'http://localhost:5000/drivers?name.forename={name}';
+    const apiUrl = `http://localhost:5000/drivers?name.forename=${name}`;
     const queryParams = {
       name,
     };
@@ -33,7 +33,7 @@ const getDriversFromAPI = async (name) => {
     return data;
 
   } catch (error) {
-    return data.status(400).json({ error: error.message })
+    throw error;
   }
 }
 module.exports = {
