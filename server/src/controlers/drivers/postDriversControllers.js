@@ -13,13 +13,15 @@ const postDriversControllers = async (name, surname, description, image, nationa
             })
             if (!teamExisting) {
                 await Team.create({ name: team })
-                
-            }
+                }
+
         }
-        return newDriver
+        await newDriver.addTeam(team.id)
+
+        return newDriver;
 
     } catch (error) {
-        throw new Error(error)
+        throw new Error({ error: error.message });
     }
 }
 

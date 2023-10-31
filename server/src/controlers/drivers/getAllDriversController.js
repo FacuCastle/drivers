@@ -27,9 +27,9 @@ const getAllDriversController = async (name) => {
 
         const allDrivers = [...objDriversApi, ...driversDB];
 
-        return allDrivers;
+        return  res.status(200).json(allDrivers);
     } catch (error) {
-        throw new Error(error.message)
+        return  res.status(200).json({error: error.message})
     }
 }
 
