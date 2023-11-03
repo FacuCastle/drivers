@@ -3,8 +3,9 @@ const { Driver, Team } = require('../../db.js');
 const postDriversControllers = async (name, surname, description, image, nationality, dob, team) => {
     try {
         const newDriver = await Driver.create({
-            name, surname, description, image, nationality, dob
+            name, surname, description, image, nationality, dob, 
         })
+        let newTeam;
         if (newDriver) {
             let teamExisting = await Team.findOne({
                 where: {
@@ -12,17 +13,18 @@ const postDriversControllers = async (name, surname, description, image, nationa
                 }
             })
             if (!teamExisting) {
-                await Team.create({ name: team })
-                }
-
+               newTeam =  await Team.create({ name: team })
+               console.log(newTeam);
+            }
+                
         }
-        await newDriver.addTeam(team.id)
-
-        return newDriver;
+        await newDriver.addTeam(newTeam.dataValues.id)
+        
+        return newDriver.dataValues;
 
     } catch (error) {
-        throw new Error({ error: error.message });
+        throw new Error(error.message);
     }
 }
 
-module.exports = postDriversControllers;
+module.exports = postDriversControllers

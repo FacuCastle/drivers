@@ -1,10 +1,11 @@
 const axios = require('axios');
 const { Op } = require('sequelize');
+const {Driver, Team }= require('../../db.js')
 
 const getDriversByName = async (name) => {
   const dbDrivers = await Driver.findAll({
     where: {
-      Nombre: {
+      name: {
         [Op.iLike]: `%${name}%`,
       },
     },
